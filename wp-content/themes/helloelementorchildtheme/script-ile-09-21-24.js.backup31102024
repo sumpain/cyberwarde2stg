@@ -1,0 +1,699 @@
+(function($){
+	// document ready
+    $(document).ready(function(){
+		var url_query = window.location.search;			
+		var url_param = new URLSearchParams(url_query);
+		var url_path  = window.location.pathname;
+		var is_login  = url_param.get('login');
+		if($("#user_new_password").length){
+
+		}else{
+			$('#learndash-reset-password-wrapper input[type="submit"]').on('click', function(event) {
+			    event.preventDefault();
+			    $(".msgerror").remove();
+			    // Get the input value
+			    var user_login = $('#user_login').val();
+
+			    // Make the AJAX request
+			    $.ajax({
+			        url: sp_obj.ajax_url,
+			        method: 'POST',
+			        data: {
+			            action: 'send_password_reset',
+			            user_login: user_login
+			        },
+			        success: function(response) {
+			            if (response.success) {
+			                console.log(response.data.message);  // Display success message
+							jQuery( "<div class='msgerror'>"+response.data.message+"</div>" ).insertAfter( "#learndash-reset-password-wrapper>form" );
+			            } else {
+			            	jQuery( "<div class='msgerror'>"+response.data.message+"</div>" ).insertAfter( "#learndash-reset-password-wrapper>form" );
+			                console.log(response.data.message);  // Display error message
+			            }
+			        },
+			        error: function() {
+			        	jQuery( "<div class='msgerror'>There was an error processing your request.</div>" ).insertAfter( "#learndash-reset-password-wrapper>form" );
+			        }
+			    });
+			});	
+		}
+			
+		$('#learndash-reset-password-wrapper .learndash-wrapper').remove();
+		$('#learndash-reset-password-wrapper ul').remove();
+		if ($('#learndash-registration-wrapper .registration-login-form').length) {
+		    var showpass = '<button type="button" class="gform_show_password gform-theme-button gform-theme-button--simple" onclick="javascript:gformToggleShowPassword(\'user_pass\');" aria-live="polite" aria-label="Show Password" data-label-show="Show Password" data-label-hide="Hide Password"><span class="dashicons dashicons-hidden" aria-hidden="true"></span></button>';
+			$(showpass).insertAfter( "#user_pass" );
+		}
+		if(is_login=='failed' || window.location.hash === '#login'){
+			$('#otpl_contact .heading h3').text('Hey, welcome back!');
+			$('#otpl_contact').appendTo('.registration-login-form');
+			$('.registration-login-form #loginform').hide();
+			$('#loginform').prepend('<div class="ld-alert ld-alert-success"><div class="ld-alert-content"><div class="ld-alert-icon ld-icon ld-icon-alert"></div><div class="ld-alert-messages">Incorrect username or password. Please try again.</div></div></div>');
+		}
+		if(is_login=='failed' || is_login=='show' || window.location.hash === '#login'){
+			$('#otpl_contact .heading h3').text('Hey, welcome back!');
+			$('#otpl_contact').appendTo('.registration-login-form');
+			$('.registration-login-form #loginform').hide();
+			$('#learndash-registration-wrapper .show-register-form').show();
+			$('#learndash-registration-wrapper .registration-login-form').show();
+			$('#learndash-registration-wrapper .gform-registration').hide();
+			$('#learndash-registration-wrapper .registration-login').hide();
+		}
+		$('#learndash-registration-wrapper .registration-login-form input[name="redirect_to"]').val('/all-courses');
+
+		/* reset password */
+		if($('#user_new_password').length){
+			$( '<i class="fa-solid fa-eye fa-eye-slash"></i>' ).insertAfter( $("#user_new_password") );
+			$('ul.resetonly').removeClass('hide');
+		}
+
+		/* profile page */ 
+		if (url_path === '/profile' || url_path === '/profile/') {
+			$('.ld-course-list #ld-main-course-list .ld-item-list-item').each(function() {
+				// Find the .ld-progress-stats .ld-progress-steps element
+				var progressSteps = jQuery(this).find('.ld-progress-stats .ld-progress-steps');
+
+				// Check if the item has the class 'learndash-incomplete'
+				if ($(this).hasClass('learndash-incomplete')) {
+					// Replace its text with 'started'
+					progressSteps.text('started');
+				} 
+				// Check if the item has the class 'learndash-complete'
+				else if ($(this).hasClass('learndash-complete')) {
+					// Replace its text with 'completed'
+					progressSteps.text('completed');
+				}
+			});
+		}
+
+		/* all courses page */
+		if (url_path === '/all-courses' || url_path === '/all-courses/') {
+			if($('.learndash-course-grid ').length > 0){
+				// var courseGrids = document.querySelectorAll('.learndash-course-grid');
+				// courseGrids.forEach(function(courseGrid) {            
+				// 	var itemsWrapper = courseGrid.querySelector('.items-wrapper.grid');
+				// 	if (!itemsWrapper || itemsWrapper.innerHTML.trim() === '') {                
+				// 		var emptyDiv = document.createElement('div');
+				// 		emptyDiv.classList.add('learndash-course-grid-empty');
+				// 		emptyDiv.textContent = 'Courses coming soon.';
+				// 		courseGrid.appendChild(emptyDiv);
+				// 		courseGrid.classList.add('its-empty');
+				// 	}
+				// });
+
+				var articles = document.querySelectorAll('.learndash-course-grid .items-wrapper.grid article.sfwd-courses');
+				articles.forEach(function(article) {
+					var itemButton = article.closest('.item').querySelector('.content .button > a').textContent;
+					if (itemButton == "LEARN MORE") {
+						article.classList.add('closed-or-comingSoon');
+						var closestItem = article.closest('.item');
+						if (closestItem) {
+							closestItem.classList.add('closed-course-item');
+						}
+
+						var thumbnail = article.querySelector('.thumbnail');
+						if (thumbnail) {
+							// Check if the overlay text is already present
+							if (!thumbnail.querySelector('.coming-soon-text')) {
+								var overlayText = document.createElement('div');
+								overlayText.className = 'coming-soon-text';
+								overlayText.textContent = 'LAUNCHING SOON';
+								thumbnail.style.position = 'relative'; // Ensure the thumbnail is positioned relative
+								thumbnail.appendChild(overlayText);
+							}
+						}
+					}
+					else if (itemButton == "Continue") {
+						article.classList.add('alreadyEnrolled');
+						var articleButton = article.querySelector('.content .button a');
+						if (articleButton) {
+							articleButton.classList.add('l-enrolled-course');
+						}
+					}
+					else if (itemButton == "Completed") {
+						var button = article.closest('.item').querySelector('.content .button > a');
+						button.classList.add('l-completed-course');
+						// Check if the next sibling exists and is not the image we want to add
+						if (!button.nextElementSibling || !button.nextElementSibling.classList.contains('l-completed-course-vector')) {
+							var img = document.createElement('img');
+							img.src = '/wp-content/uploads/2024/09/Vector-1.png';
+							img.classList.add('l-completed-course-vector');
+							button.parentNode.insertBefore(img, button.nextSibling);
+						}
+					}
+				});
+			}
+			
+			if($('#getResourseBtn').length > 0){
+				var getResourceBtn = $('#getResourseBtn');
+				if (sp_obj.courses.completed) {
+					getResourceBtn.attr('href', '/all-courses');
+					getResourceBtn.addClass('youreCyberWarden');
+				} else {
+					getResourceBtn.removeAttr('href');
+					getResourceBtn.addClass('courseCompletionRequired');
+				}
+			}
+		}
+
+		/* edit profile */ 
+		if (url_path === '/profile' || url_path === '/profile/') {
+			// Course stats
+			var enrolledCoursesCount = sp_obj.count.courses;
+			var completedCoursesCount = sp_obj.count.completed;
+
+			// Function to update course stats
+			function updateCourseStats() {
+				var enrolledElements = $('.user_enrolled_courses_count .elementor-heading-title');
+				var completedElements = $('.user_completed_courses_count .elementor-heading-title');
+				if (enrolledElements.length && completedElements.length) {
+					enrolledElements.each(function() {
+						$(this).text(enrolledCoursesCount);
+					});
+					completedElements.each(function() {
+						$(this).text(completedCoursesCount);
+					});
+					clearInterval(interval);
+				}else{
+					console.log('Still finding');
+				}
+			}
+
+			// Check for elements every second
+			var interval = setInterval(updateCourseStats, 500);
+		}
+
+		/* hubspot enrollment form */ 
+		/*if(sp_obj.course.id !== false && sp_obj.course.form !== false && sp_obj.lesson.id === false){
+			console.log('enroll form');
+			// Create the hidden div for the HubSpot form
+			var hiddenDiv = document.createElement('div');
+			hiddenDiv.className = 'enroll_popup_form';
+			hiddenDiv.style.display = 'none';
+
+			// Create the inner div for the HubSpot form
+			var innerDiv = document.createElement('div');
+			innerDiv.className = 'enroll_popup_form_inside';
+
+			// Create the paragraph element
+			var messagePara = document.createElement('p');
+			messagePara.className = 'enroll_popup_form_text';
+			messagePara.textContent = 'Please fill out this form in order to get access';
+
+			// Create the close button
+			var closeButton = document.createElement('div');
+			closeButton.className = 'popup_close_button';
+			closeButton.textContent = 'X';
+			closeButton.addEventListener('click', function() {
+				hiddenDiv.style.display = 'none'; // Hide the popup
+				hiddenDiv.classList.remove('popup_opened'); // Remove the popup opened class
+			});
+
+			// Create the actual form div
+			var actualDiv = document.createElement('div');
+			actualDiv.className = 'enroll_popup_form_actual';
+
+			// Append the paragraph and actual div to the inner div
+			innerDiv.appendChild(closeButton);
+			innerDiv.appendChild(messagePara);
+			innerDiv.appendChild(actualDiv);
+			hiddenDiv.appendChild(innerDiv);
+			document.body.appendChild(hiddenDiv);
+
+			// Load the HubSpot form script
+			var hubspotScript = document.createElement('script');
+			hubspotScript.setAttribute('charset', 'utf-8');
+			hubspotScript.setAttribute('type', 'text/javascript');
+			//hubspotScript.setAttribute('src', '//js-eu1.hsforms.net/forms/embed/v2.js');
+			hubspotScript.setAttribute('src', '//js.hsforms.net/forms/embed/v2.js');
+			hubspotScript.onload = function() {
+				// Create the HubSpot form and define callbacks
+				// hubspot enrollment form
+				hbspt.forms.create({
+					region: 'na1',
+					portalId: '44598769',
+					formId: sp_obj.course.form,
+					target: '.enroll_popup_form_actual',
+					onFormReady: function(form) {
+						// Form is ready
+						jQuery('input[name=\"email\"]').val(sp_obj.user.email).prop('disabled',true).change();
+					},
+					onFormSubmit: function() {
+						messagePara.style.display = 'none';
+					},
+					onFormSubmitted: function($form) {
+						var courseId = sp_obj.course.id;
+						var userId = sp_obj.user.id;
+						var formidtest = sp_obj.course.form;
+
+						// Update course access for the user via AJAX using jQuery
+						jQuery.ajax({
+							url: sp_obj.ajax_url,
+							method: 'POST',
+							data: {
+								action: 'ld_enroll_user',
+								user_id: userId,
+								course_id: courseId
+							},
+							success: function(response) {
+								// console.log(response);
+								if (response.success) {
+									if (sp_obj.lesson.url) {
+										window.location.href = sp_obj.lesson.url;
+									} else {
+										window.location.reload();
+									}
+								} else {
+									alert('Something went wrong, please try again or contact support.');
+								}
+							},
+							error: function(xhr, status, error) {
+								console.log('AJAX request failed:', status, error);
+							}
+						});
+					}
+				});
+			};
+			document.body.appendChild(hubspotScript);
+
+			var enrollButtons = document.querySelectorAll('.enroll_popup_form_btn');
+			enrollButtons.forEach(function(enrollButton) {
+				enrollButton.addEventListener('click', function(event) {
+					event.preventDefault(); // Prevent the default behavior
+					var popup = document.querySelector('.enroll_popup_form');
+					if (popup) {
+						popup.classList.add('popup_opened');
+						popup.style.display = 'flex'; // Show the form
+					}
+					//document.querySelector('.enroll_popup_form').style.display = 'flex'; // Show the form
+				});
+			});
+		}*/
+		//else{/*
+			/* enroll */
+			$(document).on('click','.enroll_popup_form_btn',function(){
+				var courseId = sp_obj.course.id;
+				var userId = sp_obj.user.id;
+
+				// Update course access for the user via AJAX using jQuery
+				jQuery.ajax({
+					url: sp_obj.ajax_url,
+					method: 'POST',
+					data: {
+						action: 'ld_enroll_user',
+						user_id: userId,
+						course_id: courseId
+					},
+					success: function(response) {
+						// console.log(response);
+						if (response.success) {
+							if (sp_obj.lesson.url) {
+								window.location.href = sp_obj.lesson.url;
+							} else {
+								window.location.reload();
+							}
+						} else {
+							alert('Something went wrong, please try again or contact support.');
+						}
+					},
+					error: function(xhr, status, error) {
+						console.log('AJAX request failed:', status, error);
+					}
+				});
+			});
+		//}
+
+		/* hubspot graduate form */
+		if(sp_obj.course.id !== false && sp_obj.course.form !== false && sp_obj.lesson.id !== false){
+			// Create the hidden div for the popup form
+			var hiddenDiv = document.createElement('div');
+			hiddenDiv.className = 'complete_popup_form';
+			hiddenDiv.style.display = 'none';
+
+			// Create the inner div for the form content
+			var innerDiv = document.createElement('div');
+			innerDiv.className = 'complete_popup_form_inside';
+
+			var closeButton = document.createElement('div');
+			closeButton.className = 'popup_close_button';
+			closeButton.textContent = 'X';
+			closeButton.addEventListener('click', function() {
+				hiddenDiv.style.display = 'none'; // Hide the popup
+				hiddenDiv.classList.remove('popup_opened'); // Remove the popup opened class
+			});
+
+			// Create the actual form div
+			var actualDiv = document.createElement('div');
+			actualDiv.className = 'complete_popup_form_actual';
+
+			// Append the inner div to the hidden div
+			innerDiv.appendChild(closeButton);
+			innerDiv.appendChild(actualDiv);
+			hiddenDiv.appendChild(innerDiv);
+			document.body.appendChild(hiddenDiv);
+
+			// Hide all forms with the class 'sfwd-mark-complete'
+			var formsToHide = document.querySelectorAll('form.sfwd-mark-complete');
+			formsToHide.forEach(function(form) {
+				form.style.display = 'none !important';
+			});
+
+			// Attach click event to all buttons with class 'learndash_mark_complete_button.complete_popup_form_btn'
+			var completeButtons = document.querySelectorAll('.learndash_mark_complete_button.complete_popup_form_btn');
+			completeButtons.forEach(function(button) {
+				button.addEventListener('click', function(event) {
+					event.preventDefault(); // Prevent default action
+					var closestContainer = this.closest('.tclr-mark-complete-button');
+					if (closestContainer) {
+						var formToMark = closestContainer.querySelector('form.sfwd-mark-complete');
+						if (formToMark) {
+							formToMark.classList.add('popup_clicked');
+						}
+					}
+					hiddenDiv.style.display = 'flex'; // Show the popup
+				});
+			});
+
+			// Load the HubSpot form script
+			var hubspotScript = document.createElement('script');
+			hubspotScript.setAttribute('charset', 'utf-8');
+			hubspotScript.setAttribute('type', 'text/javascript');
+			// hubspotScript.setAttribute('src', '//js-eu1.hsforms.net/forms/embed/v2.js');
+			hubspotScript.setAttribute('src', '//js.hsforms.net/forms/embed/v2.js');
+			hubspotScript.onload = function() {
+				// Create the HubSpot form and define callbacks
+				//hubspot graduation form
+				hbspt.forms.create({
+					region: 'na1',
+					portalId: '44598769',
+					formId: sp_obj.course.form,
+					target: '.complete_popup_form_actual',
+					onFormReady: function(form) {
+						// Form is ready
+						jQuery('input[name=\"email\"]').val(sp_obj.user.email).prop('disabled',true).change();
+					},
+					onFormSubmitted: function(form) {
+						var userId = sp_obj.user.id;
+						var lessonId = sp_obj.lesson.id;
+						// Update user meta via AJAX
+						jQuery.ajax({
+							url: sp_obj.ajax_url,
+							method: 'POST',
+							data: {
+								action: 'update_graduated_hubspot_meta',
+								user_id: userId,
+								lesson_id: lessonId
+							},
+							success: function(response) {
+								if (response.success) {
+									// Trigger the form's submit button
+									var clickedForm = document.querySelector('form.sfwd-mark-complete.popup_clicked');
+									if (clickedForm) {
+										var submitButton = clickedForm.querySelector('.learndash_mark_complete_button');
+										if (submitButton) {
+											submitButton.click();
+										}
+										clickedForm.classList.remove('popup_clicked');
+									} else {
+										var allForms = document.querySelectorAll('form.sfwd-mark-complete .learndash_mark_complete_button');
+										if (allForms.length > 0) {
+											allForms[0].click();
+										}
+									}
+									setTimeout(function() {
+										hiddenDiv.style.display = 'none';
+									}, 2000);
+								} else {
+									console.log('Failed to update user meta:', response.data);
+								}
+							},
+							error: function(xhr, status, error) {
+								console.log('AJAX request failed:', status, error);
+							}
+						});
+					}
+				});
+			};
+			document.body.appendChild(hubspotScript); 
+		}
+	});
+	/*$(document).on('submit','#wp-submit',  function(e){
+		if (IsEmail($('#user_login').val()) === false) {
+		// Do something if the value is "test"
+			console.log("The value is not an email!");
+		} else {
+		// Do something else if the value is not "test"
+			e.preventDefault();
+			jQuery.ajax({
+				url: sp_obj.ajax_url,
+				method: 'POST',
+				data: {
+					action: 'otplaction',
+					otplsecurity: $('#optl-form input[name="otplsecurity"]').val(),
+					otplzplussecurity: '',
+					email: $('#user_login').val(),
+					email_otp: '',
+					validateotp: 0,
+
+				},
+				success: function(response) {
+					console.log(response);
+				},
+				error: function(xhr, status, error) {
+					console.log('AJAX request failed:', status, error);	
+				}
+			});			
+		}
+
+	});*/
+/*	$(document).on('change blur','#user_login, #email',function(){
+		var email = $(this).val();
+		if (IsEmail($(this).val()) === false) {
+		// Do something if the value is "test"
+			$('.registration-login-form #otpl_contact').hide();
+			$('.registration-login-form #loginform').show();
+			console.log('not email');
+		} else {
+		// Do something else if the value is not "test"
+			$('.registration-login-form #loginform').hide();
+			$('.registration-login-form #otpl_contact').show();
+			console.log('it is a email');
+		}
+		$('#loginform #user_login').val(email);
+		$('#optl-form #email').val(email);
+	});
+	function IsEmail(email) {
+	    const regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	    if (!regex.test(email)) {
+	        return false;
+	    }
+	    else {
+	        return true;
+	    }
+	}	*/
+
+	/* login page */
+	$(document).on('click','.show-register-form',function(){
+		$('#learndash-registration-wrapper .gform-registration').show();
+	});
+	$(document).on('click','.registration-login-link',function(){
+			$('#otpl_contact .heading h3').text('Hey, welcome back!');
+			$('#otpl_contact').appendTo('.registration-login-form');
+			$('.registration-login-form #loginform').hide();		
+		$('#learndash-registration-wrapper .gform-registration').hide();
+		$('#learndash-registration-wrapper .registration-login-form input[name="redirect_to"]').val('/all-courses');
+	});
+	$(document).on('submit','form.gform-registration',function(){
+		$(this).find('input[type="submit"]').removeClass('active').addClass('active');
+	});
+	$(document).on('focus','.gfield input,.gfield select,.gfield textarea',function(){
+		if($(this).closest('.gfield').hasClass('gfield_error')){
+			$(this).closest('.gfield').removeClass('gfield_error');
+		}
+	});
+
+	/* reset password */ 
+	/*$(document).on( "submit","#learndash-reset-password-wrapper>form", function( event ) {				
+		$("div.msgerror").remove();
+		allok = true;	
+		if($('#user_new_password').length){
+			$('ul.resetonly').removeClass('hide');
+			var check = function(string){
+				var param = new RegExp("^.*(?=.{10,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&+\-\._*)(=])[a-zA-Z0-9!@#$%^&+\-\._*)(=]*$");
+				var res = param.test(string);
+				return res;
+			}
+			if(check($('#user_new_password').val()) == false){
+				$( "<div class='msgerror'>Good cyber security starts with strong passwords. To create a cyber safe password, make it: At least 13 characters long, at least one lowercase letter, at least one uppercase letter, at least one number and at least one symbol.</div>" ).insertAfter( "#learndash-reset-password-wrapper>form" );
+				event.preventDefault();				
+			}			
+		}
+	});
+	$(document).on("keyup keypress blur change","#user_new_password",function( event ) {
+		$('ul.resetonly').removeClass('hide');
+		$('#bullet-one').removeClass('green-check');
+		$('#bullet-two').removeClass('green-check');
+		$('#bullet-three').removeClass('green-check');
+		$('#bullet-four').removeClass('green-check');
+
+		var password = $(this).val();
+		var number = RegExp('[0-9]');
+		var uppercase = RegExp('[A-Z]');
+		var lowercase = RegExp('[a-z]');
+		var symbol = RegExp('[!@#$%^&*(),.?":{}|<>]');
+		var message = '';
+
+		if ( password.length >= 13 ){
+			$('#bullet-one').addClass('green-check');				
+		}
+		if (lowercase.test(password)) {
+			$('#bullet-two').addClass('green-check');				
+		}
+		if (uppercase.test(password)) {
+			$('#bullet-three').addClass('green-check');				
+		}
+		if (number.test(password)) {
+			$('#bullet-four').addClass('green-check');				
+		}
+		if (symbol.test(password)) {
+			$('#bullet-five').addClass('green-check');
+		}
+	});
+	$(document).on( "keyup keypress blur change","#input_18_6, #input_18_6_2, #input_21_52, #input_21_52_2", function( event ) {
+		$('#bullet-one').removeClass('green-check');
+		$('#bullet-two').removeClass('green-check');
+		$('#bullet-three').removeClass('green-check');
+		$('#bullet-four').removeClass('green-check');
+
+		var password = jQuery(this).val();
+		var number = RegExp('[0-9]');
+		var uppercase = RegExp('[A-Z]');
+		var lowercase = RegExp('[a-z]');
+		var symbol = RegExp('[!@#$%^&*(),.?":{}|<>]');
+		var message = '';
+
+		if ( password.length >= 13 ){
+			$('#bullet-one').addClass('green-check');				
+		}
+		if (lowercase.test(password)) {
+			$('#bullet-two').addClass('green-check');				
+		}
+		if (uppercase.test(password)) {
+			$('#bullet-three').addClass('green-check');				
+		}
+		if (number.test(password)) {
+			$('#bullet-four').addClass('green-check');				
+		}
+		if (symbol.test(password)) {
+			$('#bullet-five').addClass('green-check');
+		}	
+		gformShowPasswordStrengths('input_18_6', 'input_52_6');
+	});
+	$(document).on('keyup keypress blur change','#input_18_6, #input_18_6_2, #input_21_52, #input_21_52_2', function(event){
+		$('#bullet-one').removeClass('green-check');
+		$('#bullet-two').removeClass('green-check');
+		$('#bullet-three').removeClass('green-check');
+		$('#bullet-four').removeClass('green-check');
+
+		var password = jQuery(this).val();
+		var number = RegExp('[0-9]');
+		var uppercase = RegExp('[A-Z]');
+		var lowercase = RegExp('[a-z]');
+		var symbol = RegExp('[!@#$%^&*(),.?":{}|<>]');
+		var message = '';
+
+		if ( password.length >= 13 ){
+			$('#bullet-one').addClass('green-check');				
+		}
+		if (lowercase.test(password)) {
+			$('#bullet-two').addClass('green-check');				
+		}
+		if (uppercase.test(password)) {
+			$('#bullet-three').addClass('green-check');				
+		}
+		if (number.test(password)) {
+			$('#bullet-four').addClass('green-check');				
+		}
+		if (symbol.test(password)) {
+			$('#bullet-five').addClass('green-check');
+		}				
+		gformShowPasswordStrengths('input_18_6', 'input_21_52');
+	});
+	$(document).on('click','#learndash-reset-password-wrapper .fa-solid.fa-eye',function(){
+		if('password' == $('#user_new_password').attr('type')){
+			$('#user_new_password').prop('type', 'text');
+			$(this).addClass('fa-eye-slash');
+		}else{
+			$('#user_new_password').prop('type', 'password');
+			$(this).removeClass('fa-eye-slash');
+		}
+	});
+	function gformShowPasswordStrengths(e) {
+		var t = gformPasswordStrengths(document.getElementById(e).value, document.getElementById(e + "_2") ? document.getElementById(e + "_2").value : "")
+		  , r = window.gf_text["password_" + t]
+		  , i = "unknown" === t ? "blank" : t;
+		$("#" + e + "_strength").val(t),
+		$("#" + e + "_strength_indicator").removeClass("blank mismatch short good bad strong").addClass(i).html(r)
+	}
+	function gformPasswordStrengths( password1, password2 ) {
+		var shortPass = 1, badPass = 2, goodPass = 3, strongPass = 4, mismatch = 5, symbolSize = 0, natLog, score;
+
+		if(password1.length <=0)
+			return "blank";
+		// password 1 != password 2
+		if ( (password1 != password2) && password2.length > 0)
+			return "mismatch";
+		//password < 8
+		if ( password1.length < 12 )
+			return "short";
+
+		var param = new RegExp("^.*(?=.{10,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&+\-\._*)(=])[a-zA-Z0-9!@#$%^&+\-\._*)(=]*$");
+		var res = param.test(password1);
+		if(res){
+			symbolSize +=80
+		}else{
+			return "short";
+		}
+
+		natLog = Math.log( Math.pow(symbolSize, password1.length) );
+		score = natLog / Math.LN2;
+		if (score < 40 )
+			return "bad";
+		if (score < 80 )
+			return "good";
+		return "strong";
+	}*/
+
+	/* edit profile */ 
+	$(document).on('click','#edit-profile-btn', function() {
+		var first_name = $('#form-first_name').val();
+		var last_name = $('#form-last_name').val();
+		//var email = $('#form-email').val();
+
+		$.ajax({
+			url: sp_obj.ajax_url,
+			type: 'POST',
+			cache: false,
+			data: {
+				action: 'update_profile',
+				first_name: first_name,
+				last_name: last_name,
+				security: sp_obj.nonce.profile
+			},
+			success: function(response) {
+				if (response.success) {
+					$('#return-message-div').text('Successfully updated');
+				} else {
+					$('#return-message-div').text('Something went wrong, please try again later');
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.error('AJAX Error:', textStatus, errorThrown);
+				$('#return-message-div').text('Something went wrong, please try again later');
+			}
+		});
+	});
+
+	
+	
+})(jQuery);

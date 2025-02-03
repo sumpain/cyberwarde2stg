@@ -1,0 +1,1189 @@
+/* 
+Theme Name:		 Hello Elementor Child Theme
+Theme URI:		 http://www.websitebundles.com/
+Description:	 Theme by Site <a href=\"http://childthemegenerator.com/\">http://childthemegenerator.com/</a>
+Author:			 WebsiteBundles
+Author URI:		 http://childthemegenerator.com/
+Template:		 hello-elementor
+Version:		 1.0.0
+Text Domain:	 Hello-Elementor-child
+-------------------------------------------------------------- */ 
+
+/* =Theme customization starts here
+------------------------------------------------------- */
+/*Disable side movement of site on mobile*/
+html, body {overflow-x: hidden !important;width: 100vw !important;}
+/* custom fonts*/
+span.elementor-counter-number, .elementor-counter .elementor-counter-number-prefix, .elementor-counter .elementor-counter-number-suffix {font-family: mundial, sans-serif !important; font-weight: 700;}
+.elementor-nav-menu a { font-family: mundial, sans-serif !important; font-weight: 400; font-style: normal;}
+/*BTN*/
+span.elementor-button-text, span.elementor-icon-list-text  {
+    font-family: mundial, sans-serif !important;
+    font-weight: inherit;
+    font-style: normal;
+    font-size: 18px !important;
+}
+.elementor-button .elementor-align-icon-right {
+    color: #fff;
+	transition: all .5s ease;
+}
+.elementor-button:hover .elementor-align-icon-right {
+	color: #1b1a44;
+}
+/*Vision 6 form */
+/*Removing elements are not in mockup*/
+#\37 434206, #\37 434207 {
+    display: none !important;
+}
+/*forcing form full width*/
+.webform_step {
+    width: 100% !important;
+}
+/*Input wrapper*/
+.wfe_component {
+    padding: 0 !important;
+}
+/*Label*/
+.wfe_component label {
+    text-transform: uppercase;
+    font-family: mundial, sans-serif !important;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 40px;
+	padding-left: 20px;
+}
+/*input*/
+.wfe_component textarea {
+	border-radius: 60px !important;
+}
+.wfe_component input, .wfe_component select {
+    border-radius: 30px !important;
+    height: 60px !important;
+    border: 1px solid #414655 !important;
+	color: #000 !important;
+}
+.wfe_component select option {
+	color: #000 !important;
+}
+/*Privacy note*/
+.wfe_component h6 {
+    text-align: center !important;
+    text-transform: inherit !important;
+    background-color: #fff !important;
+    font-family: mundial, sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal;
+}
+/*submit btn*/
+.wfe_component .wfe_button {
+    width: 100% !important;
+    border: none !important;
+    margin-top: 30px !important;
+    margin-bottom: 15px !important;
+    text-transform: uppercase !important;
+    font-family: mundial, sans-serif !important;
+    font-weight: 700 !important;
+    font-style: normal;
+    font-size: 18px !important;
+	color: #fff !important;
+}
+.wfe_component .wfe_button:hover {
+    background-color: #1b1a44 !important;
+}
+/*Login form*/
+form h1 {
+	color: #8A1A97 !important;
+}
+.wfe_component table {
+    margin-bottom: 0 !important;
+	display: flex !important;
+}
+.wfe_component table td {
+    padding: 0 0 0 10px !important;
+    background-color: #fff !important;
+    border: none !important;
+	vertical-align: middle !important;
+}
+div#\37 434952 label {
+    line-height: 20px !important;
+}
+.em_wfe_form_field_container label {
+    vertical-align: text-bottom !important;
+    padding: 0px !important;
+}
+.wfe_component table td input {
+    height: 15px !important;
+}
+/* Keep active stage on parent page */
+.current-page-ancestor a.has-submenu {
+    border-bottom: 2px solid !important;
+}
+/* Force focus style */
+.elementor-nav-menu--dropdown .elementor-item:focus {
+	background-color: inherit !important;
+}
+/* Enrol now form new style*/
+select {
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+select {
+    background-image: linear-gradient(45deg, transparent 50%, #333 50%), linear-gradient(135deg, #333 50%, transparent 50%), linear-gradient(to right, #f7f7f7, #f7f7f7);
+    background-position: calc(100% - 25px) calc(1em + 10px), calc(100% - 20px) calc(1em + 10px), 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+}
+.learndash-wrapper #learndash-registration-wrapper form input, .learndash-wrapper #learndash-reset-password-wrapper form input, select {
+	border: 1px solid #414656;
+	height: 40px;
+	padding-left: 25px !important;
+    border-radius: 40px !important;
+    -webkit-border-radius: 40px !important;
+    -moz-border-radius: 40px !important;
+}
+input[type=date], input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=url], select, textarea {
+	background-color: #f7f7f7 !important;
+}
+.learndash-wrapper #learndash-registration-wrapper form label {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 10px 15px 25px !important;
+}
+.gform_wrapper.gravity-theme .gf_step_active .gf_step_number {
+	background: #7E2A93 !important;
+    color: #fff !important;
+	border: 2px solid #7E2A93 !important;
+}
+.gform_wrapper.gravity-theme .gf_step_number {
+    background: #E8E8E8 !important;
+    border: 2px solid #E8E8E8 !important;
+	color: #000 !important;
+}
+.gform_wrapper.gravity-theme .gf_step_completed .gf_step_number:before {
+	background: #72D6CB !important;
+    border: 2px solid #72D6CB !important;
+}
+#gf_page_steps_15 {
+/*     position: absolute;
+    bottom: -60px;
+    left: 25%;
+    right: 15%; */
+    text-align: center;
+}
+
+/* LEARN DASH LOGIN REGISTRATION */
+body.sfwd-lessons-template{
+	overflow:hidden!important;
+}
+.learndash-wrapper .show-register-form:before{
+	content:"Don't have an account? ";
+}
+.learndash-wrapper #learndash-registration-wrapper{
+	display:flex;
+	flex-direction:column;
+}
+.learndash-wrapper .registration-login{
+	order:1;
+}
+.learndash-wrapper .registration-login,
+.learndash-wrapper .show-register-form,
+.learndash-wrapper .show-password-reset-link{
+	order:1;
+	text-align:center;
+}
+.learndash-wrapper .gform-registration{
+	display:flex;
+	flex-direction:column-reverse;
+}
+.learndash-wrapper .gform-registration .gform_page_footer > img,
+.learndash-wrapper .gform-registration .gf_step_label{
+	display:none!important;
+}
+.learndash-wrapper #loginform .login-remember{
+	display:none;
+}
+.learndash-wrapper > .ld-tabs{
+    margin:0!important;
+    padding:0!important;
+}
+.learndash-wrapper > .ld-tabs .elementor-widget-wrap{
+    margin:0!important;
+    padding:0!important;
+}
+.learndash-wrapper > .ld-tabs iframe{
+    margin:0!important;
+    padding:0!important;
+}
+.learndash-wrapper .uo-tincanny-content{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 90px;
+}
+.learndash-wrapper .gform-registration .gform_previous_button:hover,
+.learndash-wrapper .gform-registration .gform_previous_button:active,
+.learndash-wrapper .gform-registration .gform_previous_button:focus{
+	color:white!important;
+}
+
+.learndash-wrapper .gform-registration .ginput_container_password{
+	flex-direction:column!important;
+}
+.learndash-wrapper .gform-registration .ginput_container_password > *{
+	padding:0!important;
+}
+.learndash-wrapper .gform-registration .gform_page_footer{
+	display:flex;
+	gap:24px;
+}
+.learndash-wrapper .gform-registration .gform_page_footer > *{
+	text-transform:uppercase;
+}
+.learndash-wrapper .gform-registration .gform_page_footer > .gform_previous_button{
+	width:auto!important;
+	font-size:16px;
+	border-radius:100px;
+	border:0;
+	height: fit-content;
+	display:flex;
+}
+.learndash-wrapper .gform-registration .gform_page_footer > .gform_previous_button:not(:hover):not(:active):not(:focus){
+	background:transparent!important;
+}
+.learndash-wrapper .gform-registration .gform_page_footer > .gform_previous_button:before{
+	content: "➜";
+    font-size: 20px;    
+    margin-right: 16px;
+	transform:rotate(180deg);
+	padding-bottom: 3px;
+}
+.learndash-wrapper .gform-registration .gform_page_footer > .gform_next_button,
+.learndash-wrapper .gform-registration .gform_page_footer > .gform_button{
+	max-width:50%;
+	margin: auto !important;
+}
+.learndash-wrapper .gform-registration .gf_page_steps{
+	display:flex;
+	justify-content:center;
+	gap:16px;
+	padding-top:16px;
+	padding-bottom: 27px;
+    border: 0 !important;
+}
+.learndash-wrapper .gform-registration .gf_page_steps > *{
+	margin:0!important;
+	position:relative;
+}
+.learndash-wrapper .gform-registration .gf_page_steps > *:not(:last-child):before{
+	content:"";
+	height:1px;
+	width:16px;
+	position:absolute;
+	top:19px;
+	left:100%;
+	background: black;
+}
+.learndash-wrapper > .ld-content-actions{
+	position: fixed;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	z-index:2;
+}
+.learndash-wrapper > .ld-content-actions,
+.learndash-wrapper > .ld-content-actions > .ld-empty,
+.learndash-wrapper > .ld-content-actions > .ld-content-action{
+	padding:0!important;
+	margin:0!important;
+	border:0!important;
+}
+.learndash-wrapper > .ld-content-actions > .ld-empty,
+.learndash-wrapper > .ld-content-actions:not(.is-complete) > a,
+.learndash-wrapper > .ld-content-actions:not(.is-complete) > .ld-content-action > a{
+	display:none!important;
+}
+.learndash-wrapper > .ld-content-actions > a,
+.learndash-wrapper > .ld-content-actions > .ld-content-action > a,
+.learndash-wrapper .ld-content-actions .sfwd-mark-complete .learndash_mark_complete_button {
+	position: fixed;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	z-index:2;
+	width:auto;
+	justify-content:center;
+	display:unset!important;
+	text-align: center;
+    padding: 30px 40px;
+	font-weight: bold;
+	font-size: 18px!important;
+    text-transform: uppercase;
+	opacity:1!important;
+	transition: all .5s ease;
+	background-color: var(--e-global-color-accent )!important;
+	color: #fff !important;
+}
+.learndash-wrapper > .ld-content-actions > a:hover,
+.learndash-wrapper > .ld-content-actions > .ld-content-action > a:hover,
+.learndash-wrapper .ld-content-actions .sfwd-mark-complete .learndash_mark_complete_button:hover{
+    background-color: #1b1a47!important;
+}
+
+.learndash-wrapper .ld-content-actions .sfwd-mark-complete:after{display:none;}
+@media(min-width:768px){
+	.learndash-wrapper .ld-content-actions .sfwd-mark-complete {
+		bottom:0;left:0;right:0;
+	}
+	.learndash-wrapper .ld-content-actions .sfwd-mark-complete .learndash_mark_complete_button{
+		font-weight: bold;
+    	border-radius: 0 !important;
+	}
+}
+@media(min-width:881px){
+	.learndash-wrapper .uo-tincanny-content{
+		bottom: 0;
+	}
+	.learndash-wrapper > .ld-content-actions > a,
+	.learndash-wrapper > .ld-content-actions > .ld-content-action > a,
+	.learndash-wrapper .ld-content-actions .sfwd-mark-complete .learndash_mark_complete_button {
+		bottom: 30px;
+	}
+	/*.learndash-wrapper .ld-content-actions .sfwd-mark-complete{
+		bottom:unset;top:11px;right:25px;
+	}*/
+	.learndash-wrapper > .ld-content-actions > a,
+	.learndash-wrapper > .ld-content-actions > .ld-content-action > a,
+	.learndash-wrapper .ld-content-actions .sfwd-mark-complete .learndash_mark_complete_button {
+		padding: 30px 40px;
+		border-radius: 80px !important;
+		font-weight: 700;
+		width: 100%;
+		display: block;
+		margin: 0 auto;
+		max-width: 385px;
+	}
+}
+.elementor-kit-1084 button:hover, .elementor-kit-1084 button:focus, .elementor-kit-1084 input[type="button"]:hover, .elementor-kit-1084 input[type="button"]:focus, .elementor-kit-1084 input[type="submit"]:hover, .elementor-kit-1084 input[type="submit"]:focus, .elementor-kit-1084 .elementor-button:hover, .elementor-kit-1084 .elementor-button:focus {
+    background-color: #1b1a47 !important;
+}
+/*Hide default EXIT course button as it doesn't work*/
+.courseExit__wrapper, .courseExit__button {
+    display: none !important;
+}
+/*Password Strength*/
+.gform_wrapper.gravity-theme .gfield_password_strength {
+    border-radius: 50px !important;
+    /*background-color: #eee !important;*/
+    border: 1px solid transparent !important;
+    font-size: 14px !important;
+    text-transform: uppercase;
+	color: #7F2A93;
+    font-weight: 700;
+	text-align: left !important;
+    padding-left: 25px !important;
+	
+}
+.gform_wrapper.gravity-theme .gfield_required {
+    visibility: hidden;
+}
+div#field_15_23 {
+    font-size: 12px;
+    line-height: 16px;
+    color: purple;
+    padding: 0 30px;
+    letter-spacing: 0.2px;
+}
+button.gform_show_password.gform-theme-button.gform-theme-button--simple {
+    background: transparent !important;
+}
+.gform_wrapper.gravity-theme .description, .gform_wrapper.gravity-theme .gsection_description, .gform_wrapper.gravity-theme .instruction {
+    border-radius: 50px !important;
+}
+
+/*2FA login*/
+.login h1 a {
+	background-image: none,url(https://cyberwardens.com.au/wp-content/uploads/2022/03/cyber_wardens_logo_inline_colour.svg) !important;
+    background-size: 200px !important;
+	height: 40px !important;
+	width: 200px !important;
+}
+
+/* REGISTRATION FORM BUTTON */
+.gform-registration input[type="submit"]{
+    background-size: 24px!important;
+    background-repeat: no-repeat!important;
+    background-position: 50%!important;
+}
+.gform-registration input[type="submit"].active{
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIGZpbGw9IiNmZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48c3R5bGU+LnNwaW5uZXJfYWpQWXt0cmFuc2Zvcm0tb3JpZ2luOmNlbnRlcjthbmltYXRpb246c3Bpbm5lcl9BdGFCIC43NXMgaW5maW5pdGUgbGluZWFyfUBrZXlmcmFtZXMgc3Bpbm5lcl9BdGFCezEwMCV7dHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpfX08L3N0eWxlPjxwYXRoIGQ9Ik0xMiwxQTExLDExLDAsMSwwLDIzLDEyLDExLDExLDAsMCwwLDEyLDFabTAsMTlhOCw4LDAsMSwxLDgtOEE4LDgsMCwwLDEsMTIsMjBaIiBvcGFjaXR5PSIuMjUiLz48cGF0aCBkPSJNMTAuMTQsMS4xNmExMSwxMSwwLDAsMC05LDguOTJBMS41OSwxLjU5LDAsMCwwLDIuNDYsMTIsMS41MiwxLjUyLDAsMCwwLDQuMTEsMTAuN2E4LDgsMCwwLDEsNi42Ni02LjYxQTEuNDIsMS40MiwwLDAsMCwxMiwyLjY5aDBBMS41NywxLjU3LDAsMCwwLDEwLjE0LDEuMTZaIiBjbGFzcz0ic3Bpbm5lcl9halBZIi8+PC9zdmc+);
+    color: transparent!important;
+    pointer-events: none!important;	
+}
+/*consent fields registration form*/
+.ginput_container.ginput_container_consent {
+	display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+label.gform-field-label.gform-field-label--type-inline.gfield_consent_label, label.gform-field-label.gform-field-label--type-inline.gfield_consent_label a, fieldset#field_15_32 legend.gfield_label.gform-field-label, .gchoice label {
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+	text-align: left !important;
+}
+.ginput_container.ginput_container_consent input {
+	height: 35px !important;
+    width: 35px !important;
+    display: inline;
+    margin-left: 0 !important;
+}
+#input_15_32 {
+    display: inline-flex;
+}
+/*fieldset#field_15_32 {
+    padding-bottom: 20px;
+}*/
+fieldset#field_15_32 legend.gfield_label.gform-field-label {
+    padding-left: 5px;
+}
+#field_15_30 label.gform-field-label.gform-field-label--type-inline.gfield_consent_label {
+    margin: 0px 0 0px 5px !important;
+}
+.gchoice input {
+    height: 20px !important;
+    margin-bottom: 0 !important;
+}
+input#choice_15_32_0 {
+    height: 40px !important;
+    width: 15px !important;
+    margin-left: 20px !important;
+	/*margin-top: 10px;*/
+}
+input#choice_15_32_1 {
+    height: 40px !important;
+    width: 15px !important;
+}
+fieldset#field_15_32 span.gfield_required {
+    display: none;
+}
+.gchoice.gchoice_15_32_1 {
+    margin-left: 60px;
+}
+/*.learndash-wrapper #learndash-registration-wrapper form fieldset#field_15_32 label {
+    margin: 0px 5px !important;
+	vertical-align: baseline;
+}*/
+label.gform-field-label.gform-field-label--type-inline.gfield_consent_label, label.gform-field-label.gform-field-label--type-inline.gfield_consent_label a, legend.gfield_label.gform-field-label {
+    line-height: 24px;
+}
+
+/* REGISTRATION-LOGIN STYLE */
+.sp-lms-privacy,
+.sp-lms-privacy > a,
+.sp-lms-or{
+	font-size:14px!important;
+	line-height:20px!important;
+	font-weight:300!important;
+	color: #fff !important;
+}
+.sp-lms-privacy,
+.sp-lms-or{
+    width: 100%;
+    max-width: 366px;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.sp-lms-privacy > a{
+	font-weight:700!important;
+}
+.sp-lms-privacy > a:hover{
+	text-decoration:underline!important;
+}
+.sp-lms-or{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	gap:15px;
+	max-width:381px;
+}
+.sp-lms-or > span{
+	flex:none;
+	padding-bottom:5px;
+}
+.sp-lms-or:before,
+.sp-lms-or:after{
+	content:"";
+	height:1px;
+	background-color:white;
+	width:100%;
+}
+/*SAVE AND EXIT BUTTON*/
+.single-sfwd-lessons .learndash-wrapper .ld-tab-content a[href="/logout"]{
+	z-index: 9;
+	transition: all .5s ease;
+	position: absolute;
+	right: 30px;
+	background-color: #FAFAFA;
+	color: #7F2A93;
+	border-radius: 60px;
+    padding: 5px 20px;
+    font-size: 14px;
+}
+.single-sfwd-lessons .learndash-wrapper .ld-tab-content a[href="/logout"]:hover {
+    background-color: #7F2A93;
+    color: #fafafa;
+}
+/*END SAVE AND EXIT BUTTON*/
+
+.learndash-agent .gform-registration .gform_page_footer > .gform_next_button,
+.learndash-agent .gform-registration .gform_page_footer > .gform_button{
+      background-color: #44D8CA !important;
+      border: 1px solid #44D8CA !important;
+      height: 44px !important;
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      color: #7F2A93 !important;
+      line-height: 12px;
+      text-transform: uppercase;
+}
+.learndash-agent .show-register-form:before{
+	content:"Don't have an account? ";
+}
+.learndash-agent #learndash-registration-wrapper{
+	display:flex;
+	flex-direction:column;
+}
+.learndash-agent .registration-login{
+	order:1;
+}
+.learndash-agent .registration-login,
+.learndash-agent .show-register-form,
+.learndash-agent .show-password-reset-link{
+	order:1;
+	text-align:center;
+}
+.learndash-agent .gform-registration{
+	display:flex;
+	flex-direction:column-reverse;
+}
+.learndash-agent .gform-registration .gform_page_footer > img,
+.learndash-agent .gform-registration .gf_step_label{
+	display:none!important;
+}
+.learndash-agent #loginform .login-remember{
+	display:none;
+}
+.learndash-agent > .ld-tabs{
+    margin:0!important;
+    padding:0!important;
+}
+.learndash-agent > .ld-tabs .elementor-widget-wrap{
+    margin:0!important;
+    padding:0!important;
+}
+.learndash-agent > .ld-tabs iframe{
+    margin:0!important;
+    padding:0!important;
+}
+.learndash-agent .uo-tincanny-content{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 90px;
+}
+.learndash-agent .gform-registration .gform_previous_button:hover,
+.learndash-agent .gform-registration .gform_previous_button:active,
+.learndash-agent .gform-registration .gform_previous_button:focus{
+	color:white!important;
+}
+
+.learndash-agent .gform-registration .ginput_container_password{
+	flex-direction:column!important;
+}
+.learndash-agent .gform-registration .ginput_container_password > *{
+	padding:0!important;
+}
+.learndash-agent .gform-registration .gform_page_footer{
+	display:flex;
+	gap:24px;
+}
+.learndash-agent .gform-registration .gform_page_footer > *{
+	text-transform:uppercase;
+}
+.learndash-agent .gform-registration .gform_page_footer > .gform_previous_button{
+	width:auto!important;
+	font-size:16px;
+	border-radius:100px;
+	border:0;
+	height: fit-content;
+	display:flex;
+}
+.learndash-agent .gform-registration .gform_page_footer > .gform_previous_button:not(:hover):not(:active):not(:focus){
+	background:transparent!important;
+}
+.learndash-agent .gform-registration .gform_page_footer > .gform_previous_button:before{
+	content: "➜";
+    font-size: 20px;    
+    margin-right: 16px;
+	transform:rotate(180deg);
+	padding-bottom: 3px;
+}
+.learndash-agent .gform-registration .gform_page_footer > .gform_next_button,
+.learndash-agent .gform-registration .gform_page_footer > .gform_button{
+	max-width:50%;
+	margin: auto !important;
+}
+.learndash-agent .gform-registration .gf_page_steps{
+	display:flex;
+	justify-content:center;
+	gap:16px;
+	padding-top:16px;
+	padding-bottom: 27px;
+    border: 0 !important;
+}
+.learndash-agent .gform-registration .gf_page_steps > *{
+	margin:0!important;
+	position:relative;
+}
+.learndash-agent .gform-registration .gf_page_steps > *:not(:last-child):before{
+	content:"";
+	height:1px;
+	width:16px;
+	position:absolute;
+	top:19px;
+	left:100%;
+	background: black;
+}
+.learndash-agent > .ld-content-actions{
+	position: fixed;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	z-index:2;
+}
+.learndash-agent > .ld-content-actions,
+.learndash-agent > .ld-content-actions > .ld-empty,
+.learndash-agent > .ld-content-actions > .ld-content-action{
+	padding:0!important;
+	margin:0!important;
+	border:0!important;
+}
+.learndash-agent > .ld-content-actions > .ld-empty,
+.learndash-agent > .ld-content-actions:not(.is-complete) > a,
+.learndash-agent > .ld-content-actions:not(.is-complete) > .ld-content-action > a{
+	display:none!important;
+}
+.learndash-agent > .ld-content-actions > a,
+.learndash-agent > .ld-content-actions > .ld-content-action > a,
+.learndash-wrapper .learndash_mark_complete_button {
+	position: fixed;
+	bottom: 0;
+    left: 0;
+    right: 0;
+	z-index:2;
+	width:auto;
+	justify-content:center;
+	display:unset!important;
+	text-align: center!important;
+    padding: 30px 40px;
+	font-weight: bold;
+	font-size: 18px!important;
+    text-transform: uppercase;
+	opacity:1!important;
+	transition: all .5s ease;
+	background-color: var(--e-global-color-accent )!important;
+	color: #fff !important;
+	border-radius:0!important;
+}
+.learndash-agent > .ld-content-actions > a:hover,
+.learndash-agent > .ld-content-actions > .ld-content-action > a:hover,
+.learndash-wrapper .learndash_mark_complete_button:hover{
+    background-color: #1b1a47!important;
+}
+
+.learndash-agent .ld-content-actions .sfwd-mark-complete:after{display:none;}
+@media(min-width:768px){
+	.learndash-agent .ld-content-actions .sfwd-mark-complete {
+		bottom:0;left:0;right:0;
+	}
+	.learndash-wrapper .learndash_mark_complete_button{
+		font-weight: bold;
+    	border-radius: 0 !important;
+	}
+}
+@media(min-width:881px){
+	.learndash-agent .uo-tincanny-content{
+		bottom: 0;
+	}
+	.learndash-agent > .ld-content-actions > a,
+	.learndash-agent > .ld-content-actions > .ld-content-action > a,
+	.learndash-wrapper .learndash_mark_complete_button {
+		bottom: 30px;
+	}
+	/*.learndash-wrapper .ld-content-actions .sfwd-mark-complete{
+		bottom:unset;top:11px;right:25px;
+	}*/
+	.learndash-agent > .ld-content-actions > a,
+	.learndash-agent > .ld-content-actions > .ld-content-action > a,
+	.learndash-wrapper .learndash_mark_complete_button {
+		padding: 30px 40px!important;
+		border-radius: 80px !important;
+		font-weight: 700;
+		width: 100%;
+		display: block;
+		margin: 0 auto!important;
+		max-width: 385px;
+	}
+}
+
+ .learndash-agent .elementor-shortcode .gform_wrapper.gravity-theme .gfield input.large,.gform_wrapper.gravity-theme .gfield select.large {
+      border: 1px solid #fff;
+      height: 40px !important;
+      padding-left: 25px !important;
+      border-radius: 40px !important;
+      -webkit-border-radius: 40px !important;
+      -moz-border-radius: 40px !important;
+      background-color: #fff;
+  }
+
+.learndash-agent .elementor-shortcode  form input{
+	      border: 1px solid #fff;
+      height: 40px !important;
+      padding-left: 25px !important;
+      border-radius: 40px !important;
+      -webkit-border-radius: 40px !important;
+      -moz-border-radius: 40px !important;
+      background-color: #fff;
+}
+.learndash-agent .elementor-shortcode form input {
+    border: 2px solid #a1a1a1;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 1em;
+    margin-left: 0;
+    width: 100%
+}
+.learndash-agent .gform-registration .gf_page_steps > *:not(:last-child):before {
+          background: #fff !important;
+}
+.gform_wrapper.gravity-theme .gf_step_active .gf_step_number {
+	background: #44d8ca !important;
+    color: #fff !important;
+	border: 2px solid #7E2A93 !important;
+}
+.learndash-agent form h1 {
+	color: #fff !important;
+	font-weight: 600;
+	font-size: 28px !important;
+	line-height: 39px;
+}
+.learndash-agent .elementor-shortcode form .gfield .gfield_radio input[type=radio] {
+    border: 2px solid #fff !important;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #ffffff99 !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding-left: 0 !important;
+    padding: 0 !important;
+    display: inline-flex;
+    place-content: center;
+	margin: 0px 0px 15px 15px !important;
+}
+.learndash-agent .elementor-shortcode form label, .gform_wrapper.gravity-theme .gfield_label, .learndash-agent form label {
+      text-transform: none;
+      font-size: 20px !important;
+      margin: 0px 0px 15px 15px !important;
+      font-weight: 300!important;
+      color: #fff!important;
+      line-height: 22px;
+  }
+.learndash-agent form label {
+      text-align: center !important;
+  }
+.learndash-agent form .gfield_radio .gchoice {
+    /*display: inline-flex;
+    width: 100%;*/
+    margin-bottom: 15px;
+}
+ .learndash-agent form .gfield .gfield_radio input[type=radio]:before {
+    content: '';
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+.learndash-agent form .gfield .gfield_radio input[type=radio]:checked:before {
+    background: #2EC6B3 !important;
+    content: url('/wp-content/uploads/2024/05/checked-icon.png');
+    padding: 3px 7px;
+    border: 2px solid #7defeb !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    margin: -2px 0;
+}
+
+.learndash-agent .itsg_abnlookup_checkabn_33, .itsg_abnlookup_response.itsg_abnlookup_response_33.Active {
+    display: none !important;
+}
+.fa-eye{
+	font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 16px;
+    top: 43px;
+    cursor: pointer;
+    color: #7F2A93 !important;
+    font-style: inherit;
+}
+.resetonly.hide{
+	display:none;
+}
+/*Force same size on courses name*/
+.learndash-course-grid .items-wrapper .grid-3 .content .entry-title {
+	min-height: 80px;
+}
+/*disable email field*/
+input#email-c8006f15-cf56-4d77-b4a7-66e57d0fa75b, input#email-c024fe69-9e74-4f2c-82f7-f6f55d6aa251 {
+    cursor: not-allowed;
+    color: #999;
+}
+/*style graduation form*/
+.complete_popup_form_inside h1 {
+    font-size: 28px;
+}
+p.enroll_popup_form_text {
+	font-size: 28px;
+	font-weight: 500;
+    line-height: 1.2;
+	color: #891996;
+}
+.complete_popup_form_inside .hs-form label, .enroll_popup_form_inside .hs-form label {
+    color: #333;
+}
+.complete_popup_form_inside .hs-form-field, .complete_popup_form_inside .hs_abn, .complete_popup_form_inside .hs-dependent-field, .complete_popup_form_inside .hs_firstname, .complete_popup_form_inside .hs_email, .complete_popup_form_inside .hs_email, .enroll_popup_form_inside .hs_email, .enroll_popup_form_inside .hs-fieldtype-select {
+    flex-basis: 100%;
+    padding: 0px 5px;
+}
+.enroll_popup_form_inside .hs-fieldtype-select {
+    padding: 15px 0;
+}
+.complete_popup_form_inside input.hs-button, .enroll_popup_form_inside input.hs-button {
+    width: 100%;
+}
+.complete_popup_form_inside ul {
+    list-style: none;
+    padding-left: 0;
+}
+.complete_popup_form_inside .hs-form .hs-form-radio input {
+    margin-right: 10px;
+}
+.complete_popup_form_inside .hs-form label span {
+    font-weight: 400;
+}
+.complete_popup_form_inside .hs-dependent-field {
+    padding: 20px 0;
+}
+.complete_popup_form_inside legend.hs-field-desc, .enroll_popup_form_inside legend.hs-field-desc {
+    font-size: 14px;
+    padding-left: 25px;
+}
+.enroll_popup_form_inside .hs-fieldtype-select select {
+    height: 56px !important;
+    border: 1px solid #666;
+}
+
+
+/* hubspot form */
+.disabled{
+    pointer-events: none!important;
+}
+.enroll_popup_form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;                
+}
+
+.enroll_popup_form_inside {
+    background: #fff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    min-width: 50%;
+    max-height: 90%;
+    overflow: auto;
+    position: relative;
+    max-width:600px;
+    margin:auto;
+}
+.popup_close_button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #8a1a97 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 30px;
+    height: 30px;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    text-align: center;
+    line-height: 28px !important;
+}
+.disabled{
+    pointer-events: none!important;
+}
+input#email-c024fe69-9e74-4f2c-82f7-f6f55d6aa251 {
+    pointer-events: none;
+    color: #ddd;
+}
+.ld-content-action form.sfwd-mark-complete{
+    display:none !important;
+}
+/* .learndash_mark_complete_button.complete_popup_form_btn{
+    padding: 30px 40px;
+    border-radius: 80px !important;
+    font-weight: 700;
+    width: 100%;
+    line-height: 30px;
+    border: 0;
+    margin: 0 auto;
+    box-shadow: none;
+    height: auto;
+    max-width: 385px;
+    bottom: 30px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    justify-content: center;
+    display: unset !important;
+    text-align: center;
+    font-size: 18px !important;
+    text-transform: uppercase;
+    opacity: 1 !important;
+    transition: all .5s ease;
+    background-color: var(--e-global-color-accent) !important;
+    color: #fff !important;
+	margin:auto;
+}
+@media (min-width: 881px) {
+    .learndash_mark_complete_button.complete_popup_form_btn {
+        bottom: 30px;
+        padding: 30px 40px;
+        border-radius: 80px !important;
+        font-weight: 700;
+        width: 100%;
+        margin: 0 auto!important;
+        max-width: 385px;
+    }
+    
+}
+@media (max-width: 768px) {
+    .learndash_mark_complete_button.complete_popup_form_btn{
+        font-weight: bold;
+        border-radius: 0 !important;
+        max-width: none;
+        bottom: 0;
+    }
+} */
+.complete_popup_form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.complete_popup_form_inside {
+    background: #fff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    min-width: 50%;
+    max-height: 90%;
+    overflow: auto;
+    position: relative;
+    max-width:600px;
+    margin:auto;
+}
+.popup_close_button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #8a1a97 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 30px;
+    height: 30px;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    text-align: center;
+    line-height: 28px !important;
+}
+/* Certificates box on you are a cyberwarden page */
+.certificates-wrapper .ld-section-heading, .certificates-wrapper .ld-expand-button.ld-primary-background.ld-compact.ld-not-mobile, .certificates-wrapper .ld-expand-button.ld-button-alternate.ld-mobile-only {
+    display: none !important;
+}
+.certificates-wrapper .learndash-wrapper .ld-item-list .ld-item-list-item {
+    border: none !important;
+    margin: 0 !important;
+}
+.certificates-wrapper .learndash-wrapper .ld-item-list {
+    margin: 0;
+}
+.certificates-wrapper .learndash-wrapper .ld-item-list .ld-item-list-item .ld-item-list-item-preview {
+	padding: 15px 0 0;
+}
+.certificates-wrapper .learndash-wrapper .ld-status-icon.ld-status-complete .ld-icon {
+    font-size: 12px;
+}
+.certificates-wrapper .learndash-wrapper .ld-status-icon {
+	flex-basis: 20px;
+	height: 20px;
+	width: 20px;
+}
+.certificates-wrapper span.ld-course-title {
+    font-size: 16px !important;
+    color: #000;
+}
+.certificates-wrapper a.ld-item-name {
+    pointer-events: none;
+	flex: 1 1 50% !important;
+}
+.certificates-wrapper span.ld-icon.ld-icon-certificate::after {
+    content: 'Download certificate';
+    font-size: 14px;
+    font-family: "Mundial";
+	vertical-align: top;
+    padding-left: 10px;
+    line-height: 25px;
+	text-decoration: underline;
+    transition: all .5s ease;
+}
+.certificates-wrapper span.ld-icon.ld-icon-certificate:hover::after {
+    color: #1B1A44;
+}
+.certificates-wrapper .ld-status.ld-status-complete.ld-secondary-background {
+    display: none;
+}
+.registration-login-form button{
+    position: absolute;
+    outline: 0px!important;
+    border: 0px;
+    right: 0px;
+    padding-bottom: 0px!important;
+    padding-top: 11px!important;
+}
+#learndash-reset-password-wrapper .learndash-wrapper, #learndash-reset-password-wrapper ul, #learndash-reset-password-wrapper h2{
+	display: none;
+}
+#otpl-body{
+	background: transparent;
+	padding: 0rem 3rem;
+}
+#optl-form h3{
+	color: #fff!important;
+}
+#optl-form .emailerror{
+	display: block;
+    font-size: 15px;
+    color: #ffa700;
+}
+span.loginback{
+	position:unset;
+	padding: 0px 11px;
+    color: #fff;
+}
+.otpestatus{
+	text-align: center;
+    display: block;
+} 
+.otplogin-shortcode{
+	display: none;
+}
+
+
+/* Check icon styling */
+#gform_page_18_1 .ginput_container_text.valid::after,#gform_page_18_1 .ginput_container_email.valid::after {
+  content: ""; /* Unicode checkmark */
+  color: #00a2e8;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 7px;
+  right: 10px;
+  background: #e5e1e1;
+  line-height: 30px;
+  padding: 0px;
+  border-radius: 50px;
+  text-align: center;
+  background: url(/wp-content/uploads/2024/10/Group-40124.svg);
+}
+.optobject, .seq-opt{
+	display: inline-flex;
+}
+.optobject .otp-input, .seq-opt .otp-input{
+	margin: 0px 0px!important;
+	text-align: center;
+	padding: 0px -3px!important;
+}
+.cg-otp-password__password > input[type='text'], #email_otp{
+	display: none;
+}
+#optl-form .emailerror {
+    display: block;
+    font-size: inherit;
+    color: #fff;
+    padding: 0px 0px!important;
+    text-transform: none;
+    font-weight: normal;
+}
+#otpl-body .emailerror.error{
+	padding: 0 10px;
+	text-transform:none;
+	font-weight: normal;
+	font-size: inherit;
+	text-align: center;
+}
+
+.gform-theme-button:disabled{
+	background-color: lightgray;
+}
+
+.submitOtp:disabled:after{
+content: "X";
+}
+.anchortop .anchortop{
+	display: none;
+}
+/* Full width get started button for very small devices */
+@media(max-width:430px){
+	.learndash-wrapper .gform-registration .gform_page_footer {
+		display: block;
+	}
+	.learndash-wrapper .gform-registration .gform_page_footer > .gform_next_button, .learndash-wrapper .gform-registration .gform_page_footer > .gform_button {
+		max-width: 100%;
+	}
+}
